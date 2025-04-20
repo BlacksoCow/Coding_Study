@@ -1,0 +1,29 @@
+#ifndef __HIGHCREDITACCOUNT_H__
+#define __HIGHCREDITACCOUNT_H__
+
+#include "NormalAccount.h"
+class HighCreditAccount: public NormalAccount
+{
+private:
+	int rank;
+public:
+	HighCreditAccount(const int& ID, const int& Seedmoney, String name, const int& per, const int& rank)
+		:NormalAccount(ID, Seedmoney, name, per), rank(rank)
+	{ /* Empty constructor */ }
+	HighCreditAccount(const HighCreditAccount& hca)
+		:NormalAccount(hca), rank(hca.rank)
+	{ /* Empty copy constructor */ }
+	HighCreditAccount& operator=(const HighCreditAccount& hca)
+	{
+		rank = hca.rank;
+		NormalAccount::operator=(hca);
+		return *this;
+	} // Assignment operator
+	inline int GetRank() const { return rank; }
+	void Deposit(const int&) override;
+	void ShowInfo() const override;
+	~HighCreditAccount()
+	{ /* Empty destructor */ }
+};
+
+#endif
